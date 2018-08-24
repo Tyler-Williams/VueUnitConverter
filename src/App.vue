@@ -1,17 +1,18 @@
 <template>
   <div id="app">
+    <h1>Universal Unit Converter</h1>
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <converter/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Converter from '@/components/Converter.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Converter
   }
 }
 </script>
@@ -24,5 +25,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+h1 {
+  font-size: 300%;
 }
 </style>
