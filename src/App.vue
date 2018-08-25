@@ -7,12 +7,16 @@
 </template>
 
 <script>
-import Converter from '@/components/Converter.vue'
+import Converter from '@/components/Converter'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Converter
+  },
+  data () {
+    return {
+    }
   }
 }
 </script>
