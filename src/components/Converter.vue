@@ -23,7 +23,16 @@
                     <div slot="header">{{unit.title}}</div>
                     <v-card>
                       <v-card-text>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        <v-layout row>
+                          <v-flex xs9>
+                            <v-text-field
+                            v-bind="{label: 'Measurement'}"
+                            v-model="unitQuantity"></v-text-field>
+                          </v-flex>
+                          <v-flex xs3>
+                            <v-btn v-on:click="convert(types.title, unit.title, unitQuantity)">Convert</v-btn>
+                          </v-flex>
+                        </v-layout>
                       </v-card-text>
                     </v-card>
                   </v-expansion-panel-content>
@@ -34,6 +43,29 @@
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
+    <v-layout row>
+      <v-flex xs3></v-flex>
+      <v-flex xs6>
+        <v-card>
+          <v-card-title>
+            <h4>{{converted.title}}</h4>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-container >
+            <v-layout
+            align-center
+            justify-space-between
+            row
+            pt-3
+            v-for="item in converted.items"
+            :key="item.title">
+              <div>{{item.title}}</div>
+              <div>{{item.value}}{{item.units}}</div>
+            </v-layout>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-content>
 </template>
 
@@ -170,6 +202,9 @@ export default {
                 },
                 therm: {
                   title: 'Therms'
+                },
+                nm: {
+                  title: 'Newton-Meters'
                 }
               }
             },
@@ -178,9 +213,6 @@ export default {
               units: {
                 calorie: {
                   title: 'Calorie'
-                },
-                kcal: {
-                  title: 'KiloCalorie'
                 },
                 hp: {
                   title: 'Horsepower'
@@ -198,7 +230,32 @@ export default {
             }
           }
         }
-      }
+      },
+      converted: {
+        title: 'TEST',
+        items: [
+          {
+          title: 'Kilometers',
+          value: '100',
+          units: 'KM'
+          },
+          {
+          title: 'Feet',
+          value: '300',
+          units: 'FT'
+          }
+        ]
+      },
+      unitQuantity: null,
+      showLength: false,
+      showVolume: false,
+      showEnergy: false,
+      showMass: false
+    }
+  },
+  methods: {
+    convert (type, unit, quantity) {
+      console.log(type, unit, quantity)
     }
   }
 }
